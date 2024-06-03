@@ -68,9 +68,9 @@ func getFileFromS3(bucket, key string, region string) (string, error) {
 
 func ValidateToken(tokens string) (int, string, string, error) {
 	// fmt.Println("in ValidateToken")
-	var REGION = "ap-southeast-1"
-	var BUCKET = "cdk-hnb659fds-assets-058264531773-ap-southeast-1"
-	var KEYFILE = "token.txt"
+	var REGION string = "ap-southeast-1"
+	var BUCKET string = "cdk-hnb659fds-assets-058264531773-ap-southeast-1"
+	var KEYFILE string = "token.txt"
 	setKey, err := getFileFromS3(BUCKET, KEYFILE, REGION)
 	jwtKey := []byte(setKey)
 	if err != nil {
@@ -101,7 +101,7 @@ func ValidateToken(tokens string) (int, string, string, error) {
 }
 
 func FetchCustomerData(tenanName string) ([]CustomerData, error) {
-	var tableName = tenanName + "_" + "demo_customer"
+	var tableName string = tenanName + "_" + "demo_customer"
 	var payload []CustomerData
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
